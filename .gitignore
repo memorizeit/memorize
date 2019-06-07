@@ -1,1 +1,6 @@
-/target/
+# FILES
+.settings/
+
+# DIRS
+target/
+bin/
