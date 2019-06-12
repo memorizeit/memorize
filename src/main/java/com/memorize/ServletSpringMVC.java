@@ -1,9 +1,12 @@
-package com.memorize.conf;
+package com.memorize;
 
 import javax.servlet.Filter;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import com.memorize.conf.AppWebConfig;
+import com.memorize.conf.JPAConfig;
 
 public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletInitializer {
 

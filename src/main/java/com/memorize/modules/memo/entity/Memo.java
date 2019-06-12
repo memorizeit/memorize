@@ -1,15 +1,20 @@
-package com.memorize.entity;
+package com.memorize.modules.memo.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.memorize.modules.user.entity.Author;
+
+@Entity(name = "memo")
 public class Memo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -17,18 +22,29 @@ public class Memo implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
+	@Column(nullable = false)
 	private String title;
+
+	@Column(nullable = false)
 	private String content;
+
+	@ManyToOne
 	private Author author;
-	private List<String> tags;
-	private int backgroundColor;
-	private boolean nightMode;
-	private int fontSize;
+
+//	@ElementCollection
+//	private List<String> tags;
+
+	@Column(name = "creation_date", nullable = false)
 	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
 	private Date creationDate;
+
+	@Column(name = "update_date")
 	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
 	private Date updateDate;
-	private String visibility;
+
+	@ManyToOne
+	private MemoPreferences preferences;
 
 	public Memo() {
 
@@ -66,37 +82,13 @@ public class Memo implements Serializable {
 		this.author = author;
 	}
 
-	public List<String> getTags() {
-		return tags;
-	}
-
-	public void setTags(List<String> tags) {
-		this.tags = tags;
-	}
-
-	public int getBackgroundColor() {
-		return backgroundColor;
-	}
-
-	public void setBackgroundColor(int backgroundColor) {
-		this.backgroundColor = backgroundColor;
-	}
-
-	public boolean isNightMode() {
-		return nightMode;
-	}
-
-	public void setNightMode(boolean nightMode) {
-		this.nightMode = nightMode;
-	}
-
-	public int getFontSize() {
-		return fontSize;
-	}
-
-	public void setFontSize(int fontSize) {
-		this.fontSize = fontSize;
-	}
+//	public List<String> getTags() {
+//		return tags;
+//	}
+//
+//	public void setTags(List<String> tags) {
+//		this.tags = tags;
+//	}
 
 	public Date getCreationDate() {
 		return creationDate;
@@ -114,12 +106,12 @@ public class Memo implements Serializable {
 		this.updateDate = updateDate;
 	}
 
-	public String getVisibility() {
-		return visibility;
+	public MemoPreferences getPreferences() {
+		return preferences;
 	}
 
-	public void setVisibility(String visibility) {
-		this.visibility = visibility;
+	public void setPreferences(MemoPreferences preferences) {
+		this.preferences = preferences;
 	}
 
 	@Override

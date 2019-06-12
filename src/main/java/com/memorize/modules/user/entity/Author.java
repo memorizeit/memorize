@@ -1,16 +1,21 @@
-package com.memorize.entity;
+package com.memorize.modules.user.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
+import com.memorize.modules.memo.entity.Memo;
+
+@Entity(name = "author")
 public class Author implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -18,13 +23,32 @@ public class Author implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
+	@Column(nullable = false)
 	private String name;
-	private int age;
+
+	@Column(nullable = false)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	private Date birthday;
+
 	private String bio;
+
+	@OneToMany(mappedBy = "author")
+	private List<Memo> memos;
+
+	@Column(nullable = false, unique = true)
 	private String url;
+
+	@Column(nullable = false, unique = true)
 	private String username;
+
+	@Column(nullable = false, unique = true)
 	private String email;
+
+	@Column(nullable = false)
 	private transient String password;
+
+	@Column(name = "creation_date", nullable = false)
 	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
 	private Date creationDate;
 
@@ -48,16 +72,24 @@ public class Author implements Serializable {
 		this.name = name;
 	}
 
-	public int getAge() {
-		return age;
+	public Date getBirthday() {
+		return birthday;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setBirthday(Date age) {
+		this.birthday = age;
 	}
 
 	public String getBio() {
 		return bio;
+	}
+
+	public List<Memo> getMemos() {
+		return memos;
+	}
+
+	public void setMemos(List<Memo> memos) {
+		this.memos = memos;
 	}
 
 	public void setBio(String bio) {
