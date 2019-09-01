@@ -1,6 +1,8 @@
 # FILES
-.settings/
+.project
+.classpath
 
 # DIRS
 target/
 bin/
+.settings/
