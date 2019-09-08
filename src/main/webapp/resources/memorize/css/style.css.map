@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,aAAc;EACV,OAAO,EAAE,IAAI;EAChB,eAAe,EAAE,aAAa;;ACE/B,aAAc;EACV,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,4BAA4B;EACzC,KAAK,ECNW,OAAO",
+"sources": ["../scss/utils/_placeholders.scss","../scss/pages/memo/_new_memo.scss","../scss/utils/_colors.scss"],
+"names": [],
+"file": "style.css"
+}

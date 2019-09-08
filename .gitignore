@@ -1,6 +1,7 @@
 # FILES
 .project
 .classpath
+.sass-cache
 
 # DIRS
 target/
