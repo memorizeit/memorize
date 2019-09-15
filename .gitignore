@@ -2,6 +2,8 @@
 .project
 .classpath
 .sass-cache
+# for security reasons
+datasource-jpa-cfg.properties
 
 # DIRS
 target/

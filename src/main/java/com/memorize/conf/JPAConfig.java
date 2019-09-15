@@ -38,17 +38,17 @@ public class JPAConfig {
 
 	private DriverManagerDataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setUsername(env.getProperty("ds.local.user"));
-		dataSource.setDriverClassName(env.getProperty("ds.local.driver"));
-		dataSource.setPassword(env.getProperty("ds.local.pass"));
-		dataSource.setUrl(env.getProperty("ds.local.url"));
+		dataSource.setUsername(env.getProperty("ds.heroku.user"));
+		dataSource.setDriverClassName(env.getProperty("ds.heroku.driver"));
+		dataSource.setPassword(env.getProperty("ds.heroku.pass"));
+		dataSource.setUrl(env.getProperty("ds.heroku.url"));
 
 		return dataSource;
 	}
 
 	private Properties getJpaProperties() {
 		Properties properties = new Properties();
-		properties.put("hibernate.dialect", env.getProperty("jpa.local.dialect"));
+		properties.put("hibernate.dialect", env.getProperty("jpa.heroku.dialect"));
 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");
 		properties.put("hibernate.hbm2ddl.auto", "update");
