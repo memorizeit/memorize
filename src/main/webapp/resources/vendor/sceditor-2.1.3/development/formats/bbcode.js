@@ -636,7 +636,7 @@
 				attrs.defaultattr =
 					escapeEntities(attrs.defaultattr, true) || content;
 
-				return '<a href="' + escapeUriScheme(attrs.defaultattr) + '">' +
+				return '<a href="' + escapeUriScheme(attrs.defaultattr) + '" target="_blank">' +
 					content + '</a>';
 			}
 		},

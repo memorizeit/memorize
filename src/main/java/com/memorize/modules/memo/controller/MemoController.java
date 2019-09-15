@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,12 +25,29 @@ public class MemoController {
 		try {
 			return memoService.save(memo);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
-	@GetMapping("view")
-	public ModelAndView home() {
+
+	@GetMapping("{memoId}")
+	public ResponseEntity<String> load(@PathVariable long memoId) {
+		try {
+			return memoService.load(memoId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
+
+
+	@GetMapping("v/new")
+	public ModelAndView viewNewMemo() {
 		return new ModelAndView("index");
+	}
+
+	@GetMapping("v/{memoId}")
+	public ModelAndView viewMemo(@PathVariable long memoId) {
+		return new ModelAndView("preview");
 	}
 }

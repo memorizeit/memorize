@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Novo Memo</title>
+<title>Memo Not Found</title>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 
@@ -39,42 +39,11 @@
 	</nav>
 	<br>
 	<div class="row">
-		<div class="col s12 m10">
-			<input type="hidden" id="memo-id" value="">
-			<input id="bbcode-title" type="text" placeholder="Title of this Memo"
-				title="Title of this Memo">
-			<textarea id="bbcode-area" style="height: 300px"></textarea>
-		</div>
-		<div class="col s12 m2">
-			<div class="card darken-1">
-				<div class="card-content">
-					<span class="card-title">Options</span>
-				</div>
-				<div class="card-action flex-between">
-					<button id="submit-memo" type="button"
-						class="waves-effect waves-light btn light-blue darken-2">Save</button>
-					<a class="waves-effect waves-light btn white black-text">Help</a>
-				</div>
-			</div>
+		<div class="col s12 m12">
+			<h2>404 - NOT FOUND</h2>
 		</div>
 	</div>
 
-	<script>
-		var bbcodeArea = document.getElementById('bbcode-area');
-		sceditor
-				.create(
-						bbcodeArea,
-						{
-							format : 'bbcode',
-							icons : 'monocons',
-							emoticonsRoot : '/resources/vendor/sceditor-2.1.3/',
-							style : '/resources/vendor/sceditor-2.1.3/minified/themes/content/memorize.min.css',
-							toolbar : 'bold,italic,underline,strike|subscript,superscript|font,size,color,removeformat|left,center,right,justify|bulletlist,orderedlist|horizontalrule,table,code,quote|image,youtube,link,unlink|source,maximize',
-							locale : 'pt-BR',
-							width : '100%',
-							resizeEnabled: false
-						});
-	</script>
 	<script type="text/javascript"
 		src="/resources/vendor/materialize-v1.0.0/js/materialize.min.js"></script>
 	<script src="/resources/memorize/js/script.js"></script>
