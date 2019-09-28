@@ -30,7 +30,7 @@ public class MemoController {
 		}
 	}
 
-	@GetMapping("{memoId}")
+	@RequestMapping(value = "{memoId}", produces={"application/json; charset=UTF-8"})
 	public ResponseEntity<String> load(@PathVariable long memoId) {
 		try {
 			return memoService.load(memoId);
@@ -40,6 +40,15 @@ public class MemoController {
 		}
 	}
 
+	@RequestMapping(value = "all", produces={"application/json; charset=UTF-8"})
+	public ResponseEntity<String> loadAll() {
+		try {
+			return memoService.loadAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+	}
 
 	@GetMapping("v/new")
 	public ModelAndView viewNewMemo() {

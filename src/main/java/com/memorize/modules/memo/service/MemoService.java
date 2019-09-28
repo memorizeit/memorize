@@ -1,6 +1,7 @@
 package com.memorize.modules.memo.service;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,12 @@ public class MemoService {
 		String jsonMemo = new Gson().toJson(memo);
 
 		return new ResponseEntity<String>(jsonMemo, HttpStatus.OK);
+	}
+
+	public ResponseEntity<String> loadAll() {
+		List<Memo> memos = memoRepository.findAll();
+		String jsonMemos = new Gson().toJson(memos);
+
+		return new ResponseEntity<String>(jsonMemos, HttpStatus.OK);
 	}
 }
