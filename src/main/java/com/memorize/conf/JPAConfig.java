@@ -19,6 +19,8 @@ public class JPAConfig {
 	@Autowired
 	private Environment env;
 
+	private DataSourceWrapper dataSourceWrapper = new DataSourceWrapper("local");
+
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -38,17 +40,25 @@ public class JPAConfig {
 
 	private DriverManagerDataSource getDataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setUsername(env.getProperty("ds.heroku.user"));
-		dataSource.setDriverClassName(env.getProperty("ds.heroku.driver"));
-		dataSource.setPassword(env.getProperty("ds.heroku.pass"));
-		dataSource.setUrl(env.getProperty("ds.heroku.url"));
+		dataSource.setUsername(
+			env.getProperty( dataSourceWrapper.getStringUserValue() )
+		);
+		dataSource.setDriverClassName(
+			env.getProperty( dataSourceWrapper.getStringDriverValue() )
+		);
+		dataSource.setPassword(
+			env.getProperty( dataSourceWrapper.getStringPasswordValue() )
+		);
+		dataSource.setUrl(
+			env.getProperty( dataSourceWrapper.getStringUrlValue() )
+		);
 
 		return dataSource;
 	}
 
 	private Properties getJpaProperties() {
 		Properties properties = new Properties();
-		properties.put("hibernate.dialect", env.getProperty("jpa.heroku.dialect"));
+		properties.put("hibernate.dialect", env.getProperty(dataSourceWrapper.getStringDialectValue()) );
 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");
 		properties.put("hibernate.hbm2ddl.auto", "update");
