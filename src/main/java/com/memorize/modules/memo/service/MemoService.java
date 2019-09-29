@@ -1,6 +1,7 @@
 package com.memorize.modules.memo.service;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,10 +42,52 @@ public class MemoService {
 		return new ResponseEntity<String>(jsonMemo, HttpStatus.OK);
 	}
 
+	public ResponseEntity<String> loadByAuthor(String author) {
+		List<Memo> memos = memoRepository.findMemosByAuthor(author);
+		String jsonMemos = new Gson().toJson(memos);
+
+		return new ResponseEntity<String>(jsonMemos, HttpStatus.OK);
+	}
+
+	public ResponseEntity<String> loadByTitle(String title) {
+		List<Memo> memos = memoRepository.findMemosByTitle(title);
+		String jsonMemos = new Gson().toJson(memos);
+
+		return new ResponseEntity<String>(jsonMemos, HttpStatus.OK);
+	}
+
+	public ResponseEntity<String> loadByContent(String content) {
+		List<Memo> memos = memoRepository.findMemosByContent(content);
+		String jsonMemos = new Gson().toJson(memos);
+
+		return new ResponseEntity<String>(jsonMemos, HttpStatus.OK);
+	}
+
+	public ResponseEntity<String> loadByLast() {
+		List<Memo> memos = memoRepository.findMemosByLast();
+		String jsonMemos = new Gson().toJson(memos);
+
+		return new ResponseEntity<String>(jsonMemos, HttpStatus.OK);
+	}
+
+	public ResponseEntity<String> loadBetweenDates(Date date1, Date date2) {
+		List<Memo> memos = memoRepository.findMemosBetweenDates(date1, date2);
+		String jsonMemos = new Gson().toJson(memos);
+
+		return new ResponseEntity<String>(jsonMemos, HttpStatus.OK);
+	}
+
 	public ResponseEntity<String> loadAll() {
 		List<Memo> memos = memoRepository.findAll();
 		String jsonMemos = new Gson().toJson(memos);
 
 		return new ResponseEntity<String>(jsonMemos, HttpStatus.OK);
+	}
+
+	public ResponseEntity<String> delete(long memoId) {
+		long id = memoRepository.delete(memoId);
+		String jsonId = new Gson().toJson(id);
+
+		return new ResponseEntity<String>(jsonId, HttpStatus.OK);
 	}
 }

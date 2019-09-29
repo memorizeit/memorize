@@ -35,8 +35,8 @@ public abstract class AbstractGenericRepository<E extends Serializable, I> imple
 	}
 
 	public List<E> findAll() {
-		TypedQuery<E> query = manager.createQuery("select e from :pE e", classType);
-		query.setParameter("pE", classType);
+		String queryString = String.format("select e from %s e", classType.getSimpleName());
+		TypedQuery<E> query = manager.createQuery(queryString, classType);
 
 		return query.getResultList();
 	}

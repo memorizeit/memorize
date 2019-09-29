@@ -14,7 +14,7 @@ function initCreateMemoPage() {
 function recordMemo() {
     let title = document.querySelector('#bbcode-title').value.trim();
     let content = sceditor.instance(bbcodeArea).val().trim();
-    let url = '/memo/new';
+    let url = '/memos/new';
     let memoId = document.querySelector('#memo-id');
 
     if (nonExists(title) || nonExists(content)) {
@@ -68,7 +68,7 @@ function recordMemo() {
 function loadMemo() {
 	let paths = location.pathname.split('/');
 	let memoId = paths[paths.length - 1];
-	let url = `/memo/${memoId}`;
+	let url = `/memos/${memoId}`;
 
 	fetch(url)
 		.then(response => response.json())

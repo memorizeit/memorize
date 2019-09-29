@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.memorize.modules.user.entity.Author;
 
-@Entity(name = "memo")
+@Entity
 public class Memo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -47,6 +47,8 @@ public class Memo implements Serializable {
 
 	@ManyToOne
 	private MemoPreferences preferences;
+
+	private boolean deleted = false;
 
 	public Memo() {
 
@@ -114,6 +116,14 @@ public class Memo implements Serializable {
 
 	public void setPreferences(MemoPreferences preferences) {
 		this.preferences = preferences;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
+	public boolean getDeleted() {
+		return deleted;
 	}
 
 	@Override

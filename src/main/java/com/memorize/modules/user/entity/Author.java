@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.memorize.modules.memo.entity.Memo;
 
-@Entity(name = "author")
+@Entity
 public class Author implements Serializable {
 
 	private static final long serialVersionUID = 1L;
